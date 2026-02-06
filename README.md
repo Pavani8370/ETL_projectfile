@@ -58,4 +58,29 @@ write_pandas(conn, final_df, "FINAL_USER_DATA", auto_create_table=True)
 * Includes calculated AGE
 * Filters users above 18 years
 
+## Environment Configuration
+Create a .env file in the root directory:
+
+SNOWFLAKE_USER=your_username
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_ACCOUNT=your_account_identifier
+SNOWFLAKE_WAREHOUSE=your_warehouse
+SNOWFLAKE_DATABASE=your_database
+SNOWFLAKE_SCHEMA=your_schema
+
+### Snowflake Table Creation
+# RAW Layer Table
+CREATE OR REPLACE TABLE RAW_USER_DATA ( USER_ID STRING, FULL_NAME STRING, GENDER STRING, DOB DATE, EMAIL STRING, COUNTRY STRING, ACCOUNT_CREATED TIMESTAMP, SOURCE_SYSTEM STRING, LOAD_TIMESTAMP TIMESTAMP );
+
+# FINAL Layer Table
+CREATE OR REPLACE TABLE FINAL_USER_DATA ( USER_ID STRING, FULL_NAME STRING, GENDER STRING, DOB DATE, AGE INTEGER );
+
+### Run the Pipeline
+python etl_pipeline.py
+
+
+### Author
+### Pochamreddy Pavani
+Data Engineering Project
+
 
